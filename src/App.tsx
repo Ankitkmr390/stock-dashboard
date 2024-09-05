@@ -1,23 +1,43 @@
 import React, { useState } from 'react';
+import { Box, TextField, Typography, Paper } from '@mui/material';
 import StockData from './Component/StockInfo';
 
 const App: React.FC = () => {
   const [symbol, setSymbol] = useState<string>('IBM');
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="w-full max-w-md p-8 bg-white shadow-lg rounded-lg">
-        <h1 className="text-2xl font-bold mb-4">Alpha Vantage Stock Data</h1>
-        <input
-          type="text"
-          value={symbol}
-          onChange={(e) => setSymbol(e.target.value)}
-          className="w-full p-2 mb-4 border rounded-lg"
-          placeholder="Enter stock symbol"
-        />
-        <StockData symbol={symbol} />
-      </div>
-    </div>
+    
+
+<Box
+minHeight="100vh"
+bgcolor="grey.100"
+display="flex"
+alignItems="center"
+justifyContent="center"
+>
+<Paper
+  sx={{
+    width: '100%',
+    maxWidth: 500,
+    p: 4,
+    boxShadow: 3,
+    borderRadius: 2,
+  }}
+>
+  <Typography variant="h4" fontWeight="bold" gutterBottom>
+    Alpha Vantage Stock Data
+  </Typography>
+  <TextField
+    fullWidth
+    value={symbol}
+    onChange={(e) => setSymbol(e.target.value)}
+    variant="outlined"
+    margin="normal"
+    placeholder="Enter stock symbol"
+  />
+  <StockData symbol={symbol} />
+</Paper>
+</Box>
   );
 };
 

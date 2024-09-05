@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box, Typography, List, ListItem } from '@mui/material';
 import useFetchData from '../Services/apiService';
 
 interface StockDataProps {
@@ -12,18 +13,24 @@ const StockData: React.FC<StockDataProps> = ({ symbol }) => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="p-4 bg-gray-200 rounded-lg">
-      <h2 className="text-xl font-bold">Stock Data for {symbol}</h2>
+    
+
+    <Box p={2} bgcolor="grey.200" borderRadius={2}>
+      <Typography variant="h5" fontWeight="bold">
+        Stock Data for {symbol}
+      </Typography>
       {data && data['Time Series (Daily)'] && (
-        <ul>
+        <List>
           {Object.entries(data['Time Series (Daily)']).map(([date, values]: any) => (
-            <li key={date} className="mb-2">
-              <strong>{date}:</strong> Open: {values['1. open']}, Close: {values['4. close']}
-            </li>
+            <ListItem key={date} sx={{ mb: 1 }}>
+              <Typography component="span" fontWeight="bold">{date}:</Typography> Open: {values['1. open']}, Close: {values['4. close']}
+            </ListItem>
           ))}
-        </ul>
+        </List>
       )}
-    </div>
+    </Box>
+
+    
   );
 };
 
